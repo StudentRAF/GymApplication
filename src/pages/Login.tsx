@@ -14,4 +14,17 @@
  * limitations under the License.
  */
 
-/// <reference types="vite/client" />
+import Header from "../components/Header/Header.tsx";
+import { Role } from "../types.ts";
+import Typography from "@mui/material/Typography";
+
+const Login = () => {
+  return (
+    <>
+      <Header role={Role.CLIENT}/>
+      <Typography variant='h4'>Login</Typography>
+    </>
+  )
+}
+
+export default Login;

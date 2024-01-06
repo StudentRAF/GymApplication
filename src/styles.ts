@@ -14,4 +14,19 @@
  * limitations under the License.
  */
 
-/// <reference types="vite/client" />
+import { createTheme } from "@mui/material";
+import { orange } from "@mui/material/colors";
+
+export const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: orange[500]
+    }
+  },
+  typography: {
+    h4: {
+      color: "#F0F1F2"
+    }
+  }
+});

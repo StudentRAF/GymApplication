@@ -1,8 +1,28 @@
+<!--
+  ~ Copyright (C) 2024. Lazar Dobrota and Nemanja Radovanovic
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/SpaceInvader.svg" />
+    <link rel="icon" sizes="16x16" href="/Favicon-16x16.png" />
+    <link rel="icon" sizes="24x24" href="/Favicon-24x24.png" />
+    <link rel="icon" sizes="32x32" href="/Favicon-32x32.png" />
+    <link rel="icon" sizes="48x48" href="/Favicon-48x48.png" />
+    <link rel="icon" sizes="64x64" href="/Favicon-64x64.png" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- Fonts to support Material Design -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,6 +31,18 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
     />
+    <style>
+      html, body, #root {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: url("/Background.jpg") center no-repeat;
+        background-size: cover;
+      }
+    </style>
     <title>Gym Invader</title>
   </head>
   <body>

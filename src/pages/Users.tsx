@@ -14,4 +14,17 @@
  * limitations under the License.
  */
 
-/// <reference types="vite/client" />
+import Header from "../components/Header/Header.tsx";
+import Typography from "@mui/material/Typography";
+import { Role } from "../types.ts";
+
+const Gym = () => {
+  return (
+    <>
+      <Header role={Role.CLIENT}/>
+      <Typography variant='h4'>Users</Typography>
+    </>
+  )
+}
+
+export default Gym;
