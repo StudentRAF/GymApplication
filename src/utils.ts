@@ -14,20 +14,14 @@
  * limitations under the License.
  */
 
-import Header from "../components/Header/Header.tsx";
-import Typography from "@mui/material/Typography";
-import { CURRENT_USER_KEY, getLocalStorageData } from "../types/localstorage.ts";
-import { getRole } from "../utils.ts";
+import { UserToken } from "./types/user.ts";
 
-const Gyms = () => {
-  const userToken= getLocalStorageData(CURRENT_USER_KEY, null);
+export const getRole : (userToken: UserToken) => ({ name: 'Client'| 'Manager' | 'Admin' | 'Unauthorized' }) = (userToken: UserToken) => {
+  if (userToken === null)
+    return { name:  'Unauthorized' };
 
-  return(
-    <>
-      <Header role={getRole(userToken)}/>
-      <Typography variant='h4'>Gyms</Typography>
-    </>
-  )
+  if (userToken.user === null)
+    return { name:  'Unauthorized' };
+
+  return userToken.user.userRole;
 }
-
-export default Gyms;

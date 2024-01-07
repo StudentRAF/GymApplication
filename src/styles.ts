@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { createTheme } from "@mui/material";
+import { createTheme, SxProps, Theme } from "@mui/material";
 import { orange } from "@mui/material/colors";
 
 export const darkTheme = createTheme({
@@ -30,3 +30,56 @@ export const darkTheme = createTheme({
     }
   }
 });
+
+export const mainContainerStyles: SxProps<Theme> = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flex: '1 0 0',
+  alignSelf: 'stretch',
+  width: '100%',
+  height: '100%',
+}
+
+export const formStyles: SxProps<Theme> = {
+  display: 'flex',
+  padding: '80px',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '40px',
+  backgroundColor: '#121212',
+  borderRadius: '10px'
+}
+
+export const componentsVerticalStyles: SxProps<Theme> = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px'
+}
+
+export const componentsHorizontalStyles: SxProps<Theme> = {
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '20px'
+}
+
+export const componentFixedWideStyles: SxProps<Theme> = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px',
+  width: '330px'
+}
+
+export const componentFixedNormalStyles: SxProps<Theme> = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px',
+  width: '220px'
+}
+
+export const componentFilStyles: SxProps<Theme> = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px'
+}

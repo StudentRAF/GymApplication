@@ -26,15 +26,20 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { avatarRole, avatarSettings, headerRole, headerTab, Role } from "../../types.ts";
+import { headerRole, headerTab } from "../../types/header.ts";
 import LogoExtended from "../Icons/LogoExtended.tsx";
+import { RoleType } from "../../types/user.ts";
+import { useNavigate } from "react-router-dom";
+import { CURRENT_USER_KEY, removeLocalStorageDataAsync } from "../../types/localstorage.ts";
 
 
 type HeaderProps = {
-  role: Role
+  role: RoleType
 }
 
 function Header({ role }: HeaderProps) {
+  const navigate = useNavigate();
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -42,6 +47,13 @@ function Header({ role }: HeaderProps) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleProfileMenuItem = () => navigate("/profile");
+
+  const handleLogoutMenuItem = async () => await removeLocalStorageDataAsync(CURRENT_USER_KEY).then(() => {
+    navigate("/");
+    navigate(0);
+  });
 
   return (
     <AppBar position="static">
@@ -52,7 +64,7 @@ function Header({ role }: HeaderProps) {
           </Box>
 
           <Box>
-            {headerRole[role].map((tabKey: string) => (
+            {headerRole[role.name].map((tabKey: string) => (
               <Button {...headerTab[tabKey]}>
                 {headerTab[tabKey].name}
               </Button>
@@ -73,6 +85,7 @@ function Header({ role }: HeaderProps) {
                 vertical: 'top',
                 horizontal: 'right',
               }}
+              disableScrollLock={true}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
@@ -81,11 +94,12 @@ function Header({ role }: HeaderProps) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {avatarRole[role].map((itemKey) => (
-                <MenuItem {...avatarSettings[itemKey]}>
-                  <Typography textAlign="center">{avatarSettings[itemKey].name}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem key='profile' sx={{width: '130px'}} onClick={handleProfileMenuItem}>
+                <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+              <MenuItem key='logout' sx={{width: '130px'}} onClick={handleLogoutMenuItem}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

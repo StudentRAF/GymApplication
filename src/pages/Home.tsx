@@ -16,12 +16,15 @@
 
 import Header from "../components/Header/Header.tsx";
 import Typography from "@mui/material/Typography";
-import { Role } from "../types.ts";
+import { CURRENT_USER_KEY, getLocalStorageData } from "../types/localstorage.ts";
+import { getRole } from "../utils.ts";
 
 const Home = () => {
+  const userToken= getLocalStorageData(CURRENT_USER_KEY, null);
+
   return(
     <>
-      <Header role={Role.CLIENT}/>
+      <Header role={getRole(userToken)}/>
       <Typography variant='h4'>Home</Typography>
     </>
   )

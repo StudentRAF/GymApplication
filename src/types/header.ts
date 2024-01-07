@@ -14,45 +14,8 @@
  * limitations under the License.
  */
 
-import { ElementType, Key, MouseEventHandler } from "react";
+import { ElementType, Key } from "react";
 import { Link } from "react-router-dom";
-
-export const CURRENT_USER_KEY = "user";
-
-export type User = {
-  username:         string,
-  firstName:        string,
-  lastName:         string,
-  role:             Role;
-  email:            string,
-  dateOfBirth?:     Date,
-  membershipId?:    string,
-  recruitmentDate?: Date,
-  token:            string;
-} | null;
-
-export type UserLogin = {
-   username: string,
-   password: string
-}
-
-export type Gym = {
-  name:         string,
-  description?: string,
-  manager?:     User,
-  trainers:     number
-};
-
-export enum Role {
-  CLIENT       = "Client",
-  MANAGER      = "Manager",
-  ADMIN        = "Admin",
-  UNAUTHORIZED = "Unauthorized",
-}
-
-export type LocalStorageTypes = {
-  [CURRENT_USER_KEY] : User
-};
 
 enum ActionName {
   GYMS =             'GYMS',
@@ -82,12 +45,11 @@ type HeaderLink = {
 type AvatarLink = {
   name:      string,
   key:       Key | null | undefined,
-  onClick?:  MouseEventHandler<HTMLLIElement>
 };
 
 export const avatarSettings: Record<string, AvatarLink> = {
-  PROFILE: { name: 'Profile', key: 'profile', onClick: () => {} },
-  LOGOUT:  { name: 'Logout',  key: 'logout',  onClick: () => {} },
+  PROFILE: { name: 'Profile', key: 'profile' },
+  LOGOUT:  { name: 'Logout',  key: 'logout'  },
 };
 
 export const headerTab: Record<string, HeaderLink> = {
@@ -110,11 +72,4 @@ export const headerRole: Record<string, string[]> = {
   Manager:      [ ActionName.HOME, ActionName.TRAININGS, ActionName.TRAINING, ActionName.GYMS, ActionName.GYM ],
   Client:       [ ActionName.HOME, ActionName.TRAININGS, ActionName.TRAINING, ActionName.RESERVE_TRAINING ],
   Unauthorized: [ ActionName.HOME, ActionName.LOGIN, ActionName.REGISTER ]
-};
-
-export const avatarRole: Record<string, string[]> = {
-  Admin:        [ ActionName.PROFILE, ActionName.LOGOUT ],
-  Manager:      [ ActionName.PROFILE, ActionName.LOGOUT ],
-  Client:       [ ActionName.PROFILE, ActionName.LOGOUT ],
-  Unauthorized: [ ]
 };

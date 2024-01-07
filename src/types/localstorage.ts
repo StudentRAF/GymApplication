@@ -14,23 +14,29 @@
  * limitations under the License.
  */
 
-import { LocalStorageTypes } from "./types.ts";
+import { UserToken } from "./user.ts";
+
+export const CURRENT_USER_KEY = "UserToken";
+
+export type LocalStorageTypes = {
+  [CURRENT_USER_KEY] : UserToken
+};
 
 export const getLocalStorageData = <Key extends keyof LocalStorageTypes>(
   item: Key,
   fallbackValue: LocalStorageTypes[Key],
-): LocalStorageTypes[Key] => {
+):  LocalStorageTypes[Key] => {
   const lsData = localStorage.getItem(item);
 
   return lsData ? (JSON.parse(lsData) as LocalStorageTypes[Key])
-                : fallbackValue;
+    : fallbackValue;
 }
 
-export const setLocalStorageData = <Key extends keyof LocalStorageTypes>(
+export const setLocalStorageDataAsync = async <Key extends keyof LocalStorageTypes>(
   item: Key,
   value: LocalStorageTypes[Key],
-): void => localStorage.setItem(item, JSON.stringify(value));
+): Promise<void> => localStorage.setItem(item, JSON.stringify(value));
 
-export const removeLocalStorageData = <Key extends keyof LocalStorageTypes>(
+export const removeLocalStorageDataAsync = async <Key extends keyof LocalStorageTypes>(
   item: Key,
-): void => localStorage.removeItem(item);
+): Promise<void> => localStorage.removeItem(item);

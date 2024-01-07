@@ -15,15 +15,22 @@
  */
 
 import Header from "../components/Header/Header.tsx";
-import { Role } from "../types.ts";
-import Typography from "@mui/material/Typography";
+import LoginForm from "../components/Login/LoginForm.tsx";
+import Box from "@mui/material/Box";
+import { mainContainerStyles } from "../styles.ts";
+import { CURRENT_USER_KEY, getLocalStorageData } from "../types/localstorage.ts";
+import { getRole } from "../utils.ts";
 
 const Login = () => {
+  const userToken= getLocalStorageData(CURRENT_USER_KEY, null);
+
   return (
-    <>
-      <Header role={Role.CLIENT}/>
-      <Typography variant='h4'>Login</Typography>
-    </>
+    <Box component="div" sx={{height:"100%"}}>
+      <Header role={getRole(userToken)}/>
+      <Box component="div" sx={mainContainerStyles}>
+        <LoginForm />
+      </Box>
+    </Box>
   )
 }
 
