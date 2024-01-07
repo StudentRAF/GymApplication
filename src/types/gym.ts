@@ -14,25 +14,11 @@
  * limitations under the License.
  */
 
-import { Gym } from "./gym.ts";
+import { User } from "./user.ts";
 
-export type UserToken = {
-  user: User | null,
-  token: string | null
-} | null;
-
-export type User = {
-  username:         string,
-  firstname:        string,
-  lastname:         string,
-  userRole:         RoleType,
-  email:            string,
-  dateOfBirth:      Date | null,
-  membershipId:     string | null,
-  recruitmentDate:  Date | null,
-  gym:              Gym | null
-} | null;
-
-export type RoleType = {
-  name: 'Client'| 'Manager' | 'Admin' | 'Unauthorized'
+export type Gym = {
+  name:         string,
+  description:  string | null,
+  manager:      User | null,
+  trainers:     number
 };
