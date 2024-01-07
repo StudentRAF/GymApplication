@@ -17,8 +17,8 @@
 import { Gym } from "./gym.ts";
 
 export type UserToken = {
-  user: User | null,
-  token: string | null
+  user: User,
+  token: string
 } | null;
 
 export type User = {
@@ -27,11 +27,26 @@ export type User = {
   lastname:         string,
   userRole:         RoleType,
   email:            string,
-  dateOfBirth:      Date | null,
-  membershipId:     string | null,
-  recruitmentDate:  Date | null,
-  gym:              Gym | null
-} | null;
+  password:         string,
+  dateOfBirth?:     string,
+  membershipId?:    string,
+  recruitmentDate?: Date,
+  gym?:             Gym
+};
+
+export type UserUpdate = {
+  username:         string,
+  oldUsername?:     string,
+  firstname:        string,
+  lastname:         string,
+  userRole?:        string,
+  email:            string,
+  password:         string,
+  dateOfBirth?:     string,
+  membershipId?:    string,
+  recruitmentDate?: string,
+  gym?:             string
+};
 
 export type RoleType = {
   name: 'Client'| 'Manager' | 'Admin' | 'Unauthorized'
