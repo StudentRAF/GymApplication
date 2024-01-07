@@ -16,12 +16,13 @@
 
 import Header from "../components/Header/Header.tsx";
 import Typography from "@mui/material/Typography";
-import { CURRENT_USER_KEY, getLocalStorageData } from "../types/localstorage.ts";
+import { CURRENT_USER_KEY, getLocalStorageData, removeLocalStorageDataAsync } from "../types/localstorage.ts";
 import { getRole } from "../utils.ts";
 
 const Home = () => {
+  //removeLocalStorageDataAsync(CURRENT_USER_KEY);
   const userToken= getLocalStorageData(CURRENT_USER_KEY, null);
-
+  
   return(
     <>
       <Header role={getRole(userToken)}/>

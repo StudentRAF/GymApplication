@@ -39,7 +39,6 @@ export type UserUpdate = {
   oldUsername?:     string,
   firstname:        string,
   lastname:         string,
-  userRole?:        string,
   email:            string,
   password:         string,
   dateOfBirth?:     string,

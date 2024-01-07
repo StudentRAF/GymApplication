@@ -15,18 +15,26 @@
  */
 
 import Header from "../components/Header/Header.tsx";
-import Typography from "@mui/material/Typography";
 import { CURRENT_USER_KEY, getLocalStorageData } from "../types/localstorage.ts";
 import { getRole } from "../utils.ts";
+import { Box } from "@mui/material";
+import { mainContainerStyles } from "../styles.ts";
+import ProfileAdminForm from "../components/Profile/ProfileAdminForm.tsx";
+import ProfileClientForm from "../components/Profile/ProfileClientForm.tsx";
+import ProfileManagerForm from "../components/Profile/ProfileManagerForm.tsx";
 
 const Profile = () => {
   const userToken= getLocalStorageData(CURRENT_USER_KEY, null);
-
+  const role = getRole(userToken);
   return(
-    <>
-      <Header role={getRole(userToken)}/>
-      <Typography variant='h4'>Profile</Typography>
-    </>
+    <Box component="div" sx={{height:"100%"}}>
+      <Header role={role}/>
+      <Box component="div" sx={mainContainerStyles}>
+        {role.name === 'Admin' && <ProfileAdminForm/>},
+        {role.name === 'Client' && <ProfileClientForm/>},
+        {role.name === 'Manager' && <ProfileManagerForm/>}
+      </Box>
+    </Box>
   )
 }
 
