@@ -15,18 +15,25 @@
  */
 
 import Header from "../components/Header/Header.tsx";
-import Typography from "@mui/material/Typography";
 import { CURRENT_USER_KEY, getLocalStorageData } from "../types/localstorage.ts";
 import { getRole } from "../utils.ts";
+import { Box } from "@mui/material";
+import { mainContainerStyles } from "../styles.ts";
+import RegisterManagerForm from "../components/Register/RegisterManagerForm.tsx";
+import RegisterClientForm from "../components/Register/RegisterClientForm.tsx";
 
 const Register = () => {
-  const userToken= getLocalStorageData(CURRENT_USER_KEY, null);
+  const userToken = getLocalStorageData(CURRENT_USER_KEY, null);
+  const role = getRole(userToken); 
 
-  return(
-    <>
-      <Header role={getRole(userToken)}/>
-      <Typography variant='h4'>Register</Typography>
-    </>
+  return (
+    <Box component="div" sx={{ height: "100%" }}>
+      <Header role={role} />
+      <Box component="div" sx={mainContainerStyles}>
+        {role.name === 'Admin' && <RegisterManagerForm />}
+        {role.name === 'Unauthorized' && <RegisterClientForm />}
+      </Box>
+    </Box>
   )
 }
 

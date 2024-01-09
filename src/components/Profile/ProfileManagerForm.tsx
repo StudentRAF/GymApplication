@@ -26,7 +26,7 @@ const ProfileManagerForm = () => {
     let userUpdate = Object.fromEntries(formData.entries()) as UserUpdate;
     userUpdate.oldUsername = userToken.user.username; //save old username before it changes
 
-    await fetch("http://localhost:8000/api/user/update", {
+    await fetch("http://localhost:8000/api/user/manager/update", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
