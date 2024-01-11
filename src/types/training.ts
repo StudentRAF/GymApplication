@@ -14,21 +14,28 @@
  * limitations under the License.
  */
 
-import { User } from "./user.ts";
-import { Training } from "./training.ts";
+import { Gym } from "./gym.ts";
 
-export type Gym = {
-  name:         string,
-  description?: string,
-  manager?:     User,
-  trainers:     number
+export type TrainingType = {
+  name: string
 };
 
-export type GymTraining = {
-  gym:             Gym,
-  training:        Training,
-  price:           number,
-  minParticipants: number,
-  maxParticipants: number
+export type Training = {
+  name:        string,
+  type:        TrainingType,
+  description: string,
+  loyalty:     number
 };
 
+export type AppointmentStatus = {
+  name: string
+};
+
+export type TrainingAppointment = {
+  gym:      Gym,
+  training: Training,
+  date:     Date,
+  time:     Date
+  duration: number,
+  status:   AppointmentStatus
+};

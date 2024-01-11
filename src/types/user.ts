@@ -15,11 +15,11 @@
  */
 
 import { Gym } from "./gym.ts";
+import { Training, TrainingAppointment } from "./training.ts";
 
-export type UserToken = {
-  user: User,
-  token: string
-} | null;
+export type RoleType = {
+  name: 'Client'| 'Manager' | 'Admin' | 'Unauthorized'
+};
 
 export type User = {
   username:         string,
@@ -47,6 +47,23 @@ export type UserUpdate = {
   gym?:             string
 };
 
-export type RoleType = {
-  name: 'Client'| 'Manager' | 'Admin' | 'Unauthorized'
+export type UserToken = {
+  user:  User,
+  token: string
+} | null;
+
+export type UserTraining = {
+  user:     User,
+  training: Training,
+  count:    number
+};
+
+export type UserAppointmentStatus = {
+  name: string
+};
+
+export type UserTrainingAppointment = {
+  trainingAppointment: TrainingAppointment,
+  client:              User,
+  status:              UserAppointmentStatus
 };

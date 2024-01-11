@@ -14,21 +14,23 @@
  * limitations under the License.
  */
 
-import { User } from "./user.ts";
-import { Training } from "./training.ts";
+export type Pageable<Type> = {
+  content:          Type[],
+  last:             boolean,
+  totalPages:       number,
+  totalElements:    number,
+  size:             number,
+  number:           number,
+  sort:             PageableSort,
+  first:            boolean,
+  numberOfElements: number,
+  empty:            boolean
+}
 
-export type Gym = {
-  name:         string,
-  description?: string,
-  manager?:     User,
-  trainers:     number
-};
+export type PageableSort = {
+  empty:    boolean,
+  sorted:   boolean,
+  unsorted: boolean
+}
 
-export type GymTraining = {
-  gym:             Gym,
-  training:        Training,
-  price:           number,
-  minParticipants: number,
-  maxParticipants: number
-};
-
+export type OrderType = 'asc' | 'desc' | 'none';
