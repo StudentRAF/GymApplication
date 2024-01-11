@@ -45,7 +45,7 @@ const LoginForm = () => {
       <Typography variant="h4">Login</Typography>
       <Box sx={componentsVerticalStyles}>
         <TextField id="username" name="username" label="Username" sx={componentFixedWideStyles}/>
-        <TextField id="password" name="password" label="Password" sx={componentFixedWideStyles}/>
+        <TextField id="password" name="password" label="Password" type="password" sx={componentFixedWideStyles}/>
       </Box>
       <Button size="large" variant="contained" type="submit">Login</Button>
     </Box>

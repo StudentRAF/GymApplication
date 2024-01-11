@@ -13,12 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material"
+import {
+  Button,
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField
+} from "@mui/material"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import { DatePicker } from "@mui/x-date-pickers"
 import { FormEvent, useEffect, useState } from "react"
-import { componentsHorizontalStyles, componentsVerticalStyles, formStyles } from "../../styles"
+import {
+  componentFixedNormalStyles,
+  componentsHorizontalStyles,
+  componentsVerticalStyles,
+  formStyles
+} from "../../styles"
 import { Gym } from "../../types/gym"
 import { CURRENT_USER_KEY, getLocalStorageData } from "../../types/localstorage"
 
@@ -68,7 +82,11 @@ const RegisterManagerForm = () => {
   };
 
   if (userToken == null || gyms == null)
-    return (<></>)
+    return (
+      <Box sx={{ display: 'flex'}}>
+        <CircularProgress size={60} />
+      </Box>
+    );
 
   const menuItems = gyms.map(item => (
     <MenuItem key={item.name} value={item.name}>{item.name}</MenuItem>
@@ -79,16 +97,16 @@ const RegisterManagerForm = () => {
       <Typography variant="h4">Manager register</Typography>
       <Box sx={componentsVerticalStyles}>
         <Box sx={componentsHorizontalStyles}>
-          <TextField id="firstname" name="firstname" label="First name" />
-          <TextField id="lastname" name="lastname" label="Last name" />
+          <TextField id="firstname" name="firstname" label="First name" sx={componentFixedNormalStyles}/>
+          <TextField id="lastname" name="lastname" label="Last name" sx={componentFixedNormalStyles}/>
         </Box>
         <TextField id="username" name="username" label="Username" />
         <TextField id="email" name="email" label="Email" />
         <TextField id="password" name="password" label="Password" />
         <Box sx={componentsHorizontalStyles}>
-          <DatePicker name="dateOfBirth" label="Date of birth" />
+          <DatePicker name="dateOfBirth" label="Date of birth" sx={componentFixedNormalStyles}/>
           <Box>
-            <FormControl fullWidth>
+            <FormControl sx={componentFixedNormalStyles}>
               <InputLabel id="gym">Gym name</InputLabel>
               <Select
                 labelId="gym"
@@ -97,6 +115,7 @@ const RegisterManagerForm = () => {
                 name="gym"
                 onChange={handleChange}
                 value={gym}
+                MenuProps={{disableScrollLock: true}}
               >
 
                 {menuItems}

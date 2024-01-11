@@ -1,5 +1,10 @@
-import { Box, Button, TextField, Typography } from "@mui/material"
-import { componentsHorizontalStyles, componentsVerticalStyles, formStyles } from "../../styles"
+import { Box, Button, CircularProgress, TextField, Typography } from "@mui/material"
+import {
+  componentFixedNormalStyles,
+  componentsHorizontalStyles,
+  componentsVerticalStyles,
+  formStyles
+} from "../../styles"
 import { DatePicker } from "@mui/x-date-pickers"
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -46,23 +51,28 @@ const ProfileAdminForm = () => {
   }
 
   if (userToken == null)
-    return (<></>)
+    return (
+      <Box sx={{ display: 'flex'}}>
+        <CircularProgress size={60} />
+      </Box>
+    );
+
   return (
     <Box component="form" sx={formStyles} onSubmit={onSubmit}>
       <Typography variant="h4">Admin profile</Typography>
       <Box sx={componentsVerticalStyles}>
         <Box sx={componentsHorizontalStyles}>
-          <TextField id="firstname" name="firstname" label="First name" defaultValue={userToken.user.firstname} />
-          <TextField id="lastname" name="lastname" label="Last name" defaultValue={userToken.user.lastname} />
+          <TextField id="firstname" name="firstname" label="First name" defaultValue={userToken.user.firstname} sx={componentFixedNormalStyles}/>
+          <TextField id="lastname" name="lastname" label="Last name" defaultValue={userToken.user.lastname} sx={componentFixedNormalStyles}/>
         </Box>
         <Box sx={componentsHorizontalStyles}>
-          <TextField id="username" name="username" label="Username" defaultValue={userToken.user.username} />
-          <TextField id="email" name="email" label="Email" defaultValue={userToken.user.email} />
+          <TextField id="username" name="username" label="Username" defaultValue={userToken.user.username} sx={componentFixedNormalStyles}/>
+          <TextField id="email" name="email" label="Email" defaultValue={userToken.user.email} sx={componentFixedNormalStyles}/>
         </Box>
         <Box sx={componentsHorizontalStyles}>
-          <TextField id="password" name="password" label="Password" defaultValue={userToken.user.password} type="password" />
+          <TextField id="password" name="password" label="Password" defaultValue={userToken.user.password} type="password" sx={componentFixedNormalStyles}/>
           <Box>
-            <DatePicker name="dateOfBirth" label="Date of birth" defaultValue={dayjs(userToken.user.dateOfBirth)} />
+            <DatePicker name="dateOfBirth" label="Date of birth" defaultValue={dayjs(userToken.user.dateOfBirth)} sx={componentFixedNormalStyles}/>
           </Box>
         </Box>
       </Box>

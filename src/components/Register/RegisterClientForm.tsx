@@ -21,7 +21,12 @@ import Typography from "@mui/material/Typography"
 import { DatePicker } from "@mui/x-date-pickers"
 import { FormEvent, useState } from "react"
 import { redirect } from "react-router-dom"
-import { componentsHorizontalStyles, componentsVerticalStyles, formStyles } from "../../styles"
+import {
+  componentFixedNormalStyles,
+  componentsHorizontalStyles,
+  componentsVerticalStyles,
+  formStyles
+} from "../../styles"
 
 const onSubmit = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
@@ -47,21 +52,22 @@ const RegisterClientForm = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setGender(event.target.value);
   };
+
   return (
     <Box component="form" sx={formStyles} onSubmit={onSubmit}>
       <Typography variant="h4">Register</Typography>
       <Box sx={componentsVerticalStyles}>
         <Box sx={componentsHorizontalStyles}>
-          <TextField id="firstname" name="firstname" label="First name" />
-          <TextField id="lastname" name="lastname" label="Last name" />
+          <TextField id="firstname" name="firstname" label="First name" sx={componentFixedNormalStyles}/>
+          <TextField id="lastname" name="lastname" label="Last name" sx={componentFixedNormalStyles}/>
         </Box>
         <TextField id="username" name="username" label="Username" />
         <TextField id="email" name="email" label="Email" />
         <TextField id="password" name="password" label="Password" />
         <Box sx={componentsHorizontalStyles}>
-          <DatePicker name="dateOfBirth" label="Date of birth" />
+          <DatePicker name="dateOfBirth" label="Date of birth" sx={componentFixedNormalStyles}/>
           <Box>
-            <FormControl fullWidth>
+            <FormControl sx={componentFixedNormalStyles}>
               <InputLabel id="gender">Gender</InputLabel>
               <Select
                 labelId="gender"
@@ -69,6 +75,7 @@ const RegisterClientForm = () => {
                 label="Gender"
                 onChange={handleChange}
                 value={gender}
+                MenuProps={{disableScrollLock: true}}
               >
                 <MenuItem value={"Male"}>Male</MenuItem>
                 <MenuItem value={"Female"}>Female</MenuItem>

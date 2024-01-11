@@ -1,4 +1,4 @@
-/*
+``/*
  * Copyright (C) 2024. Lazar Dobrota and Nemanja Radovanovic
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,6 @@ import LogoExtended from "../Icons/LogoExtended.tsx";
 import { RoleType } from "../../types/user.ts";
 import { useNavigate } from "react-router-dom";
 import { CURRENT_USER_KEY, removeLocalStorageDataAsync } from "../../types/localstorage.ts";
-
 
 type HeaderProps = {
   role: RoleType
@@ -71,37 +70,39 @@ function Header({ role }: HeaderProps) {
             ))}
           </Box>
 
-          <Box sx={{marginLeft:'10px'}}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                <Avatar alt="Lazar" src="/" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{mt: '45px'}}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              disableScrollLock={true}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem key='profile' sx={{width: '130px'}} onClick={handleProfileMenuItem}>
-                <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
-              <MenuItem key='logout' sx={{width: '130px'}} onClick={handleLogoutMenuItem}>
-                <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
+          {role.name !== 'Unauthorized' &&
+            <Box sx={{marginLeft: '10px'}}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                  <Avatar alt="Lazar" src="/"/>
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{mt: '45px'}}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                disableScrollLock={true}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem key='profile' sx={{width: '130px'}} onClick={handleProfileMenuItem}>
+                  <Typography textAlign="center">Profile</Typography>
+                </MenuItem>
+                <MenuItem key='logout' sx={{width: '130px'}} onClick={handleLogoutMenuItem}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          }
         </Toolbar>
       </Container>
     </AppBar>
