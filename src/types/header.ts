@@ -42,16 +42,6 @@ type HeaderLink = {
   to:        string
 };
 
-type AvatarLink = {
-  name:      string,
-  key:       Key | null | undefined,
-};
-
-export const avatarSettings: Record<string, AvatarLink> = {
-  PROFILE: { name: 'Profile', key: 'profile' },
-  LOGOUT:  { name: 'Logout',  key: 'logout'  },
-};
-
 export const headerTab: Record<string, HeaderLink> = {
   HOME:             { name: 'home',             variant: 'text', key: 'home',             component: Link, to: '/'                 },
   LOGIN:            { name: 'login',            variant: 'text', key: 'login',            component: Link, to: '/login'            },
@@ -68,8 +58,8 @@ export const headerTab: Record<string, HeaderLink> = {
 };
 
 export const headerRole: Record<string, string[]> = {
-  Admin:        [ ActionName.HOME, ActionName.TRAININGS, ActionName.TRAINING, ActionName.REGISTER,  ActionName.GYMS, ActionName.GYM, ActionName.USERS, ActionName.USER, ActionName.NOTIFICATIONS, ActionName.NOTIFICATION ],
-  Manager:      [ ActionName.HOME, ActionName.TRAININGS, ActionName.TRAINING, ActionName.GYMS, ActionName.GYM ],
-  Client:       [ ActionName.HOME, ActionName.TRAININGS, ActionName.TRAINING, ActionName.RESERVE_TRAINING ],
+  Admin:        [ ActionName.HOME, ActionName.REGISTER, ActionName.USERS, ActionName.GYMS, ActionName.TRAININGS, ActionName.NOTIFICATIONS ],
+  Manager:      [ ActionName.HOME, ActionName.TRAININGS, ActionName.GYM ],
+  Client:       [ ActionName.HOME, ActionName.TRAININGS, ActionName.RESERVE_TRAINING ],
   Unauthorized: [ ActionName.HOME, ActionName.LOGIN, ActionName.REGISTER ]
 };

@@ -28,7 +28,7 @@ const Register = () => {
 
   return (
     <Box component="div" sx={{ height: "100%" }}>
-      <Header role={role} />
+      <Header role={role} name={userToken?.user.firstname}/>
       <Box component="div" sx={mainContainerStyles}>
         {role.name === 'Admin' && <RegisterManagerForm />}
         {role.name === 'Unauthorized' && <RegisterClientForm />}

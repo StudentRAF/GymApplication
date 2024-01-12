@@ -28,7 +28,7 @@ const Profile = () => {
   const role = getRole(userToken);
   return(
     <Box component="div" sx={{height:"100%"}}>
-      <Header role={role}/>
+      <Header role={role} name={userToken?.user.firstname}/>
       <Box component="div" sx={mainContainerStyles}>
         {role.name === 'Admin' && <ProfileAdminForm/>},
         {role.name === 'Client' && <ProfileClientForm/>},

@@ -24,7 +24,7 @@ const Notification = () => {
 
   return(
     <>
-      <Header role={getRole(userToken)}/>
+      <Header role={getRole(userToken)} name={userToken?.user.firstname}/>
       <Typography variant='h4'>Notification</Typography>
     </>
   )

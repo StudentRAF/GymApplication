@@ -27,7 +27,7 @@ const Gyms = () => {
 
   return(
     <>
-      <Header role={role}/>
+      <Header role={role} name={userToken?.user.firstname}/>
       <Box component="div" sx={mainContainerStyles}>
         {role.name === 'Admin' && <GymsAdminView />}
       </Box>

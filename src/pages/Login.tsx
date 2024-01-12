@@ -26,7 +26,7 @@ const Login = () => {
 
   return (
     <Box component="div" sx={{height:"100%"}}>
-      <Header role={getRole(userToken)}/>
+      <Header role={getRole(userToken)} name={userToken?.user.firstname}/>
       <Box component="div" sx={mainContainerStyles}>
         <LoginForm />
       </Box>

@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
-const LogoExtended = () => {
+import { MouseEventHandler } from "react";
+
+type LogoType = {
+  onClick?: MouseEventHandler<SVGSVGElement>
+}
+
+const LogoExtended = ({onClick} : LogoType) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +28,7 @@ const LogoExtended = () => {
       height="32"
       fill="none"
       viewBox="0 0 160 32"
+      onClick={onClick}
     >
       <path
         fill="url(#paint0_linear_173_3282)"

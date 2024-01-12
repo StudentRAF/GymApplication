@@ -29,7 +29,7 @@ const Trainings = () => {
 
   return(
     <>
-      <Header role={getRole(userToken)}/>
+      <Header role={getRole(userToken)} name={userToken?.user.firstname}/>
       <Box component="div" sx={mainContainerStyles}>
         {role.name === 'Admin'   && <TrainingsAdminView/>}
         {role.name === 'Manager' && <TrainingsManagerView/>}

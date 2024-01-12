@@ -33,10 +33,11 @@ import { useNavigate } from "react-router-dom";
 import { CURRENT_USER_KEY, removeLocalStorageDataAsync } from "../../types/localstorage.ts";
 
 type HeaderProps = {
-  role: RoleType
+  role: RoleType,
+  name?: string;
 }
 
-function Header({ role }: HeaderProps) {
+function Header({ role, name }: HeaderProps) {
   const navigate = useNavigate();
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -58,8 +59,8 @@ function Header({ role }: HeaderProps) {
     <AppBar position="static">
       <Container maxWidth={false}>
         <Toolbar disableGutters>
-          <Box sx={{display: 'flex', flexGrow: 1}}>
-            <LogoExtended/>
+          <Box sx={{display: 'flex', flexGrow: 1, '&:hover': {cursor: 'pointer'}}}>
+            <LogoExtended onClick={() => navigate('/')}/>
           </Box>
 
           <Box>
@@ -74,7 +75,7 @@ function Header({ role }: HeaderProps) {
             <Box sx={{marginLeft: '10px'}}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                  <Avatar alt="Lazar" src="/"/>
+                  <Avatar alt={name} src="/"/>
                 </IconButton>
               </Tooltip>
               <Menu
