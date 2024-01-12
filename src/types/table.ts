@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+//region Training
+
 export const trainingAdminHeadType =  ['Gym', 'Training', 'Status', 'Date', 'Time', 'Username', 'Participate'] as const;
 export const trainingAdminHeadWidth = [  180,        180,      100,    100,    100,        180,           100] as const;
 export const trainingAdminParamName = {
@@ -51,3 +53,19 @@ export type TrainingAdminHeadType   = typeof trainingAdminHeadType[number];
 export type TrainingManagerHeadType = typeof trainingManagerHeadType[number];
 export type TrainingClientHeadType  = typeof trainingClientHeadType[number];
 
+//endregion Training
+
+//region Gym
+
+export const gymAdminHeadType  = ['Name', 'Manager', 'Trainers', 'Description'] as const;
+export const gymAdminHeadWidth = [   180,       180,        100,           540] as const;
+export const gymAdminParamName = {
+  Name:        'name',
+  Manager:     '',
+  Trainers:    'trainers',
+  Description: 'description'
+}
+
+export type GymAdminHeadType = typeof gymAdminHeadType[number];
+
+//endregion Gym

@@ -15,17 +15,22 @@
  */
 
 import Header from "../components/Header/Header.tsx";
-import Typography from "@mui/material/Typography";
 import { CURRENT_USER_KEY, getLocalStorageData } from "../types/localstorage.ts";
 import { getRole } from "../utils.ts";
+import GymsAdminView from "../components/Gyms/GymsAdminView.tsx";
+import { mainContainerStyles } from "../styles.ts";
+import Box from "@mui/material/Box";
 
 const Gyms = () => {
   const userToken= getLocalStorageData(CURRENT_USER_KEY, null);
+  const role = getRole(userToken);
 
   return(
     <>
-      <Header role={getRole(userToken)}/>
-      <Typography variant='h4'>Gyms</Typography>
+      <Header role={role}/>
+      <Box component="div" sx={mainContainerStyles}>
+        {role.name === 'Admin' && <GymsAdminView />}
+      </Box>
     </>
   )
 }
