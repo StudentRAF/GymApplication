@@ -74,7 +74,7 @@ const ProfileManagerForm = () => {
           <TextField id="gym" name="gym" label="Gym" defaultValue={userToken.user.gym?.name} disabled sx={componentFixedNormalStyles}/>
         </Box>
         <Box sx={componentsHorizontalStyles}>
-            <DatePicker name="dateOfBirth" label="Date of birth" defaultValue={dayjs(userToken.user.dateOfBirth)} sx={componentFixedNormalStyles}/>
+            <DatePicker name="dateOfBirth" label="Date of birth" defaultValue={userToken.user.dateOfBirth && dayjs(userToken.user.dateOfBirth)} sx={componentFixedNormalStyles}/>
             <DatePicker name="recruitmentDate" label="Recruitment date" defaultValue={dayjs(userToken.user.recruitmentDate)} sx={componentFixedNormalStyles}/>
         </Box>
       </Box>

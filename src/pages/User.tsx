@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
+import { Box } from "@mui/material";
 import Header from "../components/Header/Header.tsx";
-import Typography from "@mui/material/Typography";
+import AdminUpdateUser from "../components/User/UserForm.tsx";
+import { mainContainerStyles } from "../styles.ts";
 import { CURRENT_USER_KEY, getLocalStorageData } from "../types/localstorage.ts";
 import { getRole } from "../utils.ts";
 
 const User = () => {
   const userToken= getLocalStorageData(CURRENT_USER_KEY, null);
+  const role = getRole(userToken); 
 
   return(
-    <>
-      <Header role={getRole(userToken)} name={userToken?.user.firstname}/>
-      <Typography variant='h4'>User</Typography>
-    </>
+    <Box component="div" sx={{ height: "100%" }}>
+      <Header role={role} name={userToken?.user.firstname}/>
+      <Box component="div" sx={mainContainerStyles}>
+        {role.name === 'Admin' && <AdminUpdateUser />}
+      </Box>
+    </Box>
   )
 }
 

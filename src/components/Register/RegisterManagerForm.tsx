@@ -13,16 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {
-  Button,
-  CircularProgress,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField
-} from "@mui/material"
+import { Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import { DatePicker } from "@mui/x-date-pickers"
@@ -35,11 +26,16 @@ import {
 } from "../../styles"
 import { Gym } from "../../types/gym"
 import { CURRENT_USER_KEY, getLocalStorageData } from "../../types/localstorage"
+import { UserToken } from "../../types/user"
 
 const RegisterManagerForm = () => {
   const [gym, setGym] = useState('Pannier');
   const [gyms, setGyms] = useState<Gym[] | null>(null);
-  const userToken = getLocalStorageData(CURRENT_USER_KEY, null);
+  const [userToken, setUserToken] = useState<UserToken | null>(null);
+  
+  useEffect(() => {
+     setUserToken(getLocalStorageData(CURRENT_USER_KEY, null));
+  }, []);
 
   useEffect(() => {
     if (userToken == null) return;

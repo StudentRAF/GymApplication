@@ -32,3 +32,9 @@ export type GymTraining = {
   maxParticipants: number
 };
 
+export type GymUpdate = {
+  name:         string,
+  oldName:      string,
+  description:  string,
+  trainers:     string
+};

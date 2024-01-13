@@ -69,3 +69,23 @@ export const gymAdminParamName = {
 export type GymAdminHeadType = typeof gymAdminHeadType[number];
 
 //endregion Gym
+
+//region User
+
+export const userAdminHeadType  = ['First name', 'Last name', 'Username', 'Role', 'Email', 'Password', 'Date of birth', 'Recruitment date', 'Membership id', 'Gym name'] as const;
+export const userAdminHeadWidth = [         180,         180,        180,    100,     180,        180,             100,                100,             100,        100] as const;
+export const userAdminParamName = {
+  'First name': 'firstname',
+  'Last name' : 'lastname',
+  'Username': 'username',
+  'Role': 'userRole.name',
+  'Email': 'email',
+  'Password': 'password',
+  'Date of birth': 'dateOfBirth',
+  'Recruitment date': 'recruitmentDate',
+  'Membership id': 'membershipId',
+  'Gym name': 'gym'
+}
+export type UserAdminHeadType = typeof userAdminHeadType[number];
+
+//endregion User

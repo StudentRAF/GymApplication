@@ -16,6 +16,7 @@
 
 import { createTheme, SxProps, Theme } from "@mui/material";
 import { orange } from "@mui/material/colors";
+import { userAdminHeadWidth } from "./types/table";
 
 export const darkTheme = createTheme({
   palette: {
@@ -82,4 +83,13 @@ export const componentFilStyles: SxProps<Theme> = {
   display: 'flex',
   flexDirection: 'column',
   gap: '20px'
+}
+
+export const userAdminCellStyles = (index: number) => {
+  return {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: `${userAdminHeadWidth[index]}px`
+  }
 }

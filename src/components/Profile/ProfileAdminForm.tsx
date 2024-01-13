@@ -72,7 +72,7 @@ const ProfileAdminForm = () => {
         <Box sx={componentsHorizontalStyles}>
           <TextField id="password" name="password" label="Password" defaultValue={userToken.user.password} type="password" sx={componentFixedNormalStyles}/>
           <Box>
-            <DatePicker name="dateOfBirth" label="Date of birth" defaultValue={dayjs(userToken.user.dateOfBirth)} sx={componentFixedNormalStyles}/>
+            <DatePicker name="dateOfBirth" label="Date of birth" defaultValue={userToken.user.dateOfBirth && dayjs(userToken.user.dateOfBirth)} sx={componentFixedNormalStyles}/>
           </Box>
         </Box>
       </Box>
