@@ -1,10 +1,10 @@
-import { Box, Button, CircularProgress, TextField, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, FormControlLabel, Switch, TextField, Typography } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-import { FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { componentsHorizontalStyles, componentsVerticalStyles, formStyles } from "../../styles";
 import { CURRENT_USER_KEY, getLocalStorageData } from "../../types/localstorage";
-import { User, UserToken, UserUpdate } from "../../types/user";
+import { User, UserAdminUpdate, UserString, UserToken, UserUpdate } from "../../types/user";
 import { useParams } from "react-router-dom";
 
 type UserParams = {
@@ -14,10 +14,11 @@ type UserParams = {
 const AdminUpdateUserFormat = () => {
   const [userToken, setUserToken] = useState<UserToken | null>(null);
   const [user, setUser] = useState<User | null>(null);
-  const userParams =useParams<UserParams>();
+  const [access, setAccess] = useState<boolean>();
+  const userParams = useParams<UserParams>();
 
   useEffect(() => {
-     setUserToken(getLocalStorageData(CURRENT_USER_KEY, null));
+    setUserToken(getLocalStorageData(CURRENT_USER_KEY, null));
   }, []);
 
   useEffect(() => {
@@ -31,12 +32,13 @@ const AdminUpdateUserFormat = () => {
     })
       .then(res => {
         if (res.status >= 400)
-            throw new Error("Invalid data")
+          throw new Error("Invalid data")
         return res.json();
-    })
-      .then(res => {
-        setUser(res)
-    })
+      })
+      .then(data => {
+        setUser(data);
+        setAccess(data.access);
+      })
   }, [userToken])
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -45,7 +47,10 @@ const AdminUpdateUserFormat = () => {
     if (userToken == null) return;
 
     const formData: FormData = new FormData(event.currentTarget);
-    let userUpdate = Object.fromEntries(formData.entries()) as UserUpdate;
+    let userString = Object.fromEntries(formData.entries()) as UserString;
+
+    let userUpdate = userString as UserAdminUpdate;
+    userUpdate.access = access;
     userUpdate.oldUsername = user?.username; //save old username before it changes
 
     await fetch("http://localhost:8000/api/user/update", {
@@ -59,7 +64,7 @@ const AdminUpdateUserFormat = () => {
       if (response.status >= 400)
         throw new Error("Invalid data");
       return response.json()
-    } )
+    })
       .then(data => console.log(data))
       .catch(error => console.log(error));
   }
@@ -70,6 +75,10 @@ const AdminUpdateUserFormat = () => {
         <CircularProgress size={60} />
       </Box>
     )
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>): void {
+    setAccess(!access);
+  }
 
   return (
     <Box component="form" sx={formStyles} onSubmit={onSubmit}>
@@ -88,8 +97,12 @@ const AdminUpdateUserFormat = () => {
           <TextField id="gym" name="gym" label="Gym" defaultValue={user.gym === null ? "Not working" : user.gym?.name} disabled />
         </Box>
         <Box sx={componentsHorizontalStyles}>
-            <DatePicker name="dateOfBirth" label="Date of birth" defaultValue={user.dateOfBirth && dayjs(user.dateOfBirth)} />
-            <DatePicker name="recruitmentDate" label="Recruitment date" defaultValue={user.recruitmentDate && dayjs(user.recruitmentDate)} disabled />
+          <FormControlLabel control={<Switch id="accesFs" name="access" onChange={handleChange} defaultChecked={user.access} />} label="Access" />
+          <TextField id="activated" name="activated" label="Activated" defaultValue={user.activated} disabled />
+        </Box>
+        <Box sx={componentsHorizontalStyles}>
+          <DatePicker name="dateOfBirth" label="Date of birth" defaultValue={user.dateOfBirth && dayjs(user.dateOfBirth)} />
+          <DatePicker name="recruitmentDate" label="Recruitment date" defaultValue={user.recruitmentDate && dayjs(user.recruitmentDate)} disabled />
         </Box>
       </Box>
 

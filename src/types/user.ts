@@ -31,7 +31,36 @@ export type User = {
   dateOfBirth?:     string,
   membershipId?:    string,
   recruitmentDate?: Date,
-  gym?:             Gym
+  gym?:             Gym,
+  access:           boolean,
+  activated:        boolean
+};
+
+export type UserAdminUpdate = {
+  username:         string,
+  oldUsername?:     string,
+  firstname:        string,
+  lastname:         string,
+  email:            string,
+  password:         string,
+  dateOfBirth?:     string,
+  membershipId?:    string,
+  recruitmentDate?: string,
+  gym?:             string,
+  access?:           boolean
+};
+
+export type UserString = {
+  username:         string,
+  oldUsername?:     string,
+  firstname:        string,
+  lastname:         string,
+  email:            string,
+  password:         string,
+  dateOfBirth?:     string,
+  membershipId?:    string,
+  recruitmentDate?: string,
+  gym?:             string
 };
 
 export type UserUpdate = {
