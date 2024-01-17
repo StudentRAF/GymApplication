@@ -2,10 +2,10 @@ import { Box, Button, CircularProgress, FormControlLabel, Switch, TextField, Typ
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { componentsHorizontalStyles, componentsVerticalStyles, formStyles } from "../../styles";
 import { CURRENT_USER_KEY, getLocalStorageData } from "../../types/localstorage";
-import { User, UserAdminUpdate, UserString, UserToken, UserUpdate } from "../../types/user";
-import { useParams } from "react-router-dom";
+import { User, UserAdminUpdate, UserString, UserToken } from "../../types/user";
 
 type UserParams = {
   username: string
@@ -76,7 +76,7 @@ const AdminUpdateUserFormat = () => {
       </Box>
     )
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>): void {
+  function handleChange(_event: ChangeEvent<HTMLInputElement>): void {
     setAccess(!access);
   }
 
