@@ -29,7 +29,12 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { UserTrainingAppointment } from "../../types/user.ts";
 import { CURRENT_USER_KEY, getLocalStorageData } from "../../types/localstorage.ts";
 import { OrderType, Pageable } from "../../types/common.ts";
-import { trainingAdminHeadType, TrainingAdminHeadType, trainingAdminHeadWidth, trainingAdminParamName } from "../../types/table.ts";
+import {
+  trainingAdminHeadType,
+  TrainingAdminHeadType,
+  trainingAdminHeadWidth,
+  trainingAdminParamName
+} from "../../types/table.ts";
 
 const TrainingsAdminView = () => {
   const [appointments, setAppointments] = useState<UserTrainingAppointment[]>();
@@ -105,7 +110,11 @@ const TrainingsAdminView = () => {
         </TableHead>
         <TableBody>
           {appointments.map((item, index) =>
-            <TableRow key={index}>
+            <TableRow
+              key={index}
+              hover={true}
+              sx={{'&:hover': { cursor: 'pointer'}}}
+            >
               <TableCell align="left">{item.trainingAppointment.gym.name}</TableCell>
               <TableCell align="left">{item.trainingAppointment.training.name}</TableCell>
               <TableCell align="left">{item.trainingAppointment.status.name}</TableCell>

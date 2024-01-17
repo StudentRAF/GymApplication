@@ -35,8 +35,11 @@ import {
   trainingClientHeadWidth,
   trainingClientParamName
 } from "../../types/table.ts";
+import { useNavigate } from "react-router-dom";
 
 const TrainingsClientView = () => {
+  const navigate = useNavigate();
+
   const [appointments, setAppointments] = useState<UserTrainingAppointment[]>();
   const [totalPages, setTotalPages]     = useState<number>();
   const [currentPage, setCurrentPage]   = useState<number>(1)
@@ -110,7 +113,12 @@ const TrainingsClientView = () => {
         </TableHead>
         <TableBody>
           {appointments.map((item, index) =>
-            <TableRow key={index}>
+            <TableRow
+              key={index}
+              hover={true}
+              onClick={() => navigate(`/training/${item.trainingAppointment.gym.name}/${item.trainingAppointment.training.name}/${item.trainingAppointment.date}/${item.trainingAppointment.time}`)}
+              sx={{'&:hover': { cursor: 'pointer'}}}
+            >
               <TableCell align="left">{item.trainingAppointment.gym.name}</TableCell>
               <TableCell align="left">{item.trainingAppointment.training.name}</TableCell>
               <TableCell align="left">{item.trainingAppointment.status.name}</TableCell>

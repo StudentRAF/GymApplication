@@ -28,7 +28,7 @@ export type Training = {
 };
 
 export type AppointmentStatus = {
-  name: string
+  name: 'Pending' | 'Held' | 'Canceled'
 };
 
 export type TrainingAppointment = {
@@ -39,3 +39,20 @@ export type TrainingAppointment = {
   duration: number,
   status:   AppointmentStatus
 };
+
+export type UpdateTrainingAppointmentString = {
+  gymName:      string,
+  trainingName: string,
+  date:         string,
+  time:         string,
+  statusName:   string
+}
+
+export type UpdateTrainingAppointment = {
+  gymName:      string,
+  trainingName: string,
+  date:         string,
+  time:         string,
+  statusName:   string,
+  duration?:    number
+}

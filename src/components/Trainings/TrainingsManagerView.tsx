@@ -35,8 +35,11 @@ import {
   trainingManagerParamName
 } from "../../types/table.ts";
 import { TrainingAppointment } from "../../types/training.ts";
+import { useNavigate } from "react-router-dom";
 
 const TrainingsManagerView = () => {
+  const navigate = useNavigate();
+
   const [appointments, setAppointments] = useState<TrainingAppointment[]>();
   const [totalPages, setTotalPages]     = useState<number>();
   const [currentPage, setCurrentPage]   = useState<number>(1)
@@ -110,7 +113,12 @@ const TrainingsManagerView = () => {
         </TableHead>
         <TableBody>
           {appointments.map((item, index) =>
-            <TableRow key={index}>
+            <TableRow
+              key={index}
+              hover={true}
+              onClick={() => navigate(`/training/${item.gym.name}/${item.training.name}/${item.date}/${item.time}`)}
+              sx={{'&:hover': { cursor: 'pointer'}}}
+            >
               <TableCell align="left">{item.gym.name}</TableCell>
               <TableCell align="left">{item.training.name}</TableCell>
               <TableCell align="left">{item.status.name}</TableCell>

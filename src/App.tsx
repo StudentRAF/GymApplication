@@ -32,19 +32,19 @@ import Notifications from "./pages/Notifications.tsx";
 const App = () => {
   return (
     <Routes>
-      <Route path="/"                 element={ <Home/>            } />
-      <Route path="/login"            element={ <Login/>           } />
-      <Route path="/register"         element={ <Register/>        } />
-      <Route path="/profile"          element={ <Profile/>         } />
-      <Route path="/gym"              element={ <Gym/>             } />
-      <Route path="/gyms"             element={ <Gyms/>            } />
-      <Route path="/trainings"        element={ <Trainings/>       } />
-      <Route path="/training"         element={ <Training/>        } />
-      <Route path="/reserve-training" element={ <ReserveTraining/> } />
-      <Route path="/notifications"    element={ <Notifications/>   } />
-      <Route path="/notification"     element={ <Notification/>    } />
-      <Route path="/users"            element={ <Users/>           } />
-      <Route path="/user/:username"   element={ <User/>            } />
+      <Route path="/"                                    element={ <Home/>            } />
+      <Route path="/login"                               element={ <Login/>           } />
+      <Route path="/register"                            element={ <Register/>        } />
+      <Route path="/profile"                             element={ <Profile/>         } />
+      <Route path="/gym"                                 element={ <Gym/>             } />
+      <Route path="/gyms"                                element={ <Gyms/>            } />
+      <Route path="/trainings"                           element={ <Trainings/>       } />
+      <Route path="/training/:gym/:training/:date/:time" element={ <Training/>        } />
+      <Route path="/reserve-training"                    element={ <ReserveTraining/> } />
+      <Route path="/notifications"                       element={ <Notifications/>   } />
+      <Route path="/notification"                        element={ <Notification/>    } />
+      <Route path="/users"                               element={ <Users/>           } />
+      <Route path="/user/:username"                      element={ <User/>            } />
     </Routes>
     );
 }

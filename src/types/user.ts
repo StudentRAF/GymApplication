@@ -88,7 +88,7 @@ export type UserTraining = {
 };
 
 export type UserAppointmentStatus = {
-  name: string
+  name: 'Canceled' | 'Held' | 'Requested';
 };
 
 export type UserTrainingAppointment = {
@@ -96,3 +96,11 @@ export type UserTrainingAppointment = {
   client:              User,
   status:              UserAppointmentStatus
 };
+
+export type UpdateUserTrainingAppointment = {
+  gymName:      string,
+  trainingName: string,
+  date:         string,
+  time:         string,
+  statusName:   string,
+}
