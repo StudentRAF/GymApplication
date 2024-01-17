@@ -15,17 +15,24 @@
  */
 
 import Header from "../components/Header/Header.tsx";
-import Typography from "@mui/material/Typography";
 import { CURRENT_USER_KEY, getLocalStorageData } from "../types/localstorage.ts";
 import { getRole } from "../utils.ts";
+import TrainingClientForm from "../components/Training/TrainingClientForm.tsx";
+import { mainContainerStyles } from "../styles.ts";
+import Box from "@mui/material/Box";
+import TrainingManagerForm from "../components/Training/TrainingManagerForm.tsx";
 
 const Training = () => {
-  const userToken= getLocalStorageData(CURRENT_USER_KEY, null);
+  const userToken = getLocalStorageData(CURRENT_USER_KEY, null);
+  const role = getRole(userToken);
 
   return(
     <>
       <Header role={getRole(userToken)} name={userToken?.user.firstname}/>
-      <Typography variant='h4'>Training</Typography>
+      <Box component="div" sx={mainContainerStyles}>
+        {role.name === 'Manager' && <TrainingManagerForm />}
+        {role.name === 'Client'  && <TrainingClientForm />}
+      </Box>
     </>
   )
 }
